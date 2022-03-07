@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -30,11 +31,28 @@ func handel(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	data := []struct {
+		Name string
+		Age  int
+	}{
+		{"Richard Grayson", 24},
+		{"Jason Todd", 23},
+		{"Tim Drake", 22},
+		{"Damian Wayne", 21},
+	}
+	jsonInBytes, err := json.Marshal(data)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	switch r.Method {
 	case "POST":
 		w.Write([]byte("post"))
 	case "GET":
-		w.Write([]byte("get"))
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(jsonInBytes)
 	default:
 		http.Error(w, "", http.StatusBadRequest)
 	}
