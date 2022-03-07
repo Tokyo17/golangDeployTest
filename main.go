@@ -16,6 +16,11 @@ func main() {
 }
 
 func handel(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+
 	switch r.Method {
 	case "POST":
 		w.Write([]byte("post"))
