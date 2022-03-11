@@ -14,14 +14,14 @@ type Name struct {
 }
 
 func Api() {
-	http.HandleFunc("/api", api)
+	http.HandleFunc("/api", ApiTest)
 	http.HandleFunc("/postapi", postApi)
 	http.HandleFunc("/getapi", getApi)
 
 	http.ListenAndServe(":8080", nil)
 }
 
-func api(w http.ResponseWriter, r *http.Request) {
+func ApiTest(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method)
 	var method = fmt.Sprintf("ini %s", r.Method)
 	fmt.Fprintf(w, method)

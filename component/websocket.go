@@ -35,6 +35,7 @@ func Socket() {
 			}
 		}
 	})
+	http.HandleFunc("/api", ApiTest)
 
 	http.ListenAndServe(":8080", nil)
 }
