@@ -3,6 +3,7 @@ package fungsi
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/websocket"
 )
@@ -36,6 +37,7 @@ func Socket() {
 		}
 	})
 	http.HandleFunc("/api", ApiTest)
+	port := os.Getenv("PORT")
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+port, nil)
 }
