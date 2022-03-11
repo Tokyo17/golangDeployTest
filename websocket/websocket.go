@@ -48,7 +48,7 @@ func Reader(conn *websocket.Conn) {
 
 func Writer(conn *websocket.Conn) {
 	for {
-		fmt.Println("Write......")
+		// fmt.Println("Write......")
 		messageType, r, err := conn.NextReader()
 		if err != nil {
 			fmt.Println(err)

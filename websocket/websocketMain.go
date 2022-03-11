@@ -3,7 +3,6 @@ package websocket
 import (
 	"fmt"
 	"net/http"
-	"os"
 )
 
 func serveWs(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +21,8 @@ func WebsocketMain() {
 	fmt.Println("websocket Started")
 	setupRoutes()
 	http.HandleFunc("/", Api)
-	port := os.Getenv("PORT")
+	// port := os.Getenv("PORT")
+	port := "8080"
 	http.ListenAndServe(":"+port, nil)
 }
 
